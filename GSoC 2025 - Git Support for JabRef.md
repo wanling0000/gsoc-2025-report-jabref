@@ -115,9 +115,9 @@ fixes a regression where the `GitHandler.pullOnCurrentBranch()` method was modif
 
 #### [#13040](https://github.com/JabRef/jabref/pull/13040) - Fix: fallback conversion from BibTeX year field to biblatex date field
 
-#### [#12866](<[https://github.com/JabRef/jabref/pull/12866](https://github.com/JabRef/jabref/pull/12866)>) - Add support for loading .blg warnings in Integrity Check Dialog
+#### [#12866](https://github.com/JabRef/jabref/pull/12866) - Add support for loading .blg warnings in Integrity Check Dialog
 
-#### [#12802](<[https://github.com/JabRef/jabref/pull/12802](https://github.com/JabRef/jabref/pull/12802)>) - Fix for issue: Sanitization of generated filenames (remove LaTeX commands)
+#### [#12802](https://github.com/JabRef/jabref/pull/12802) - Fix for issue: Sanitization of generated filenames (remove LaTeX commands)
 
 ## Screenshots
 
@@ -155,7 +155,7 @@ Other feature requests and bug reports are tracked at: [https://github.com/wanl
 
 **Technical cleanup**
 
-- Remove leftover TODO comments in the codebase, especially:
+- Remove leftover `TODO` comments in the codebase, especially:
 
 - Clearly define when the “Git Share” feature should be enabled (e.g., whether the repository is initialized, remote is set).
 
