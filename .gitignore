@@ -1,0 +1,14 @@
+# Ignore temporary files
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# Ignore output folders
+/dist
+/build
+/out
+
+# Ignore Markdown preview caches (optional)
+*.markdown.preview
