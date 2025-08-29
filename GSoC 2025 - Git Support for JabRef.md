@@ -1,14 +1,14 @@
 Final Report GSoC 2025 - Git Support for JabRef
 
-| Field                  | Information                                                                                                                                                                           |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Student**            | [Wanling Fu](https://github.com/wanling0000)                                                                                                                                          |
-| **Organization**       | [JabRef e.V.](https://www.jabref.org/)                                                                                                                                                |
-| **Primary repository** | [JabRef/Jabref](https://github.com/JabRef/jabref)                                                                                                                                     |
-| **Project name**       | Git Support for JabRef                                                                                                                                                                |
-| **Project mentors**    | [@koppor](), [@subhramit](https://github.com/subhramit), [@InAnYan](https://github.com/InAnYan) [@calixtus](https://github.com/calixtus),[@Siedlerchr](https://github.com/Siedlerchr) |
-| **Project page**       | [Google Summer of Code 2025 Project Page](https://summerofcode.withgoogle.com/programs/2025/projects/R9UcJNpJ)                                                                        |
-| **Status**             | Complete                                                                                                                                                                              |
+| Field                  | Information                                                                                                                                                                                                      |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Student**            | [Wanling Fu](https://github.com/wanling0000)                                                                                                                                                                     |
+| **Organization**       | [JabRef e.V.](https://www.jabref.org/)                                                                                                                                                                           |
+| **Primary repository** | [JabRef/Jabref](https://github.com/JabRef/jabref)                                                                                                                                                                |
+| **Project name**       | Git Support for JabRef                                                                                                                                                                                           |
+| **Project mentors**    | [@koppor](https://github.com/koppor), [@subhramit](https://github.com/subhramit), [@InAnYan](https://github.com/InAnYan), [@calixtus](https://github.com/calixtus), [@Siedlerchr](https://github.com/Siedlerchr) |
+| **Project page**       | [Google Summer of Code 2025 Project Page](https://summerofcode.withgoogle.com/programs/2025/projects/R9UcJNpJ)                                                                                                   |
+| **Status**             | Complete                                                                                                                                                                                                         |
 
 ---
 
@@ -18,7 +18,7 @@ To support version control and collaborative editing of `.bib` libraries, this p
 
 The project includes the following key features:
 
-**1. Semantic 3-way merge:**
+**1. Semantic three-way merge:**
 
 Instead of using Git’s default line-based diff and merge, this project implements a structure-aware merge based on BibEntry. It detects field-level conflicts. If a conflict is found, JabRef shows a GUI dialog for the user to resolve it. If not, the system merges and commits the changes automatically without user input.
 
@@ -36,45 +36,45 @@ Instead of using Git’s default line-based diff and merge, this project impleme
 
 ### Scope - GSoC
 
-#### [#13518](<[https://github.com/JabRef/jabref/pull/13518](https://github.com/JabRef/jabref/pull/13518)>) - logic orchestration for Git Pull/Push operations
+#### [#13518](https://github.com/JabRef/jabref/pull/13518) - logic orchestration for Git Pull/Push operations
 
 **Highlights:**
 
-- Introduced GitSyncService as the central orchestrator for Git operations, managing pull, push, and semantic merge processes.
+- Introduced `GitSyncService` as the central orchestrator for Git operations, managing pull, push, and semantic merge processes.
 
-  - Implemented semantic 3-way merge logic for `.bib` entries based on structured comparison of base, local, and remote versions.
+  - Implemented semantic three-way merge logic for `.bib` entries based on structured comparison of base, local, and remote versions.
 
   - Field-level conflicts are detected and resolved.
 
 - Added logic-layer modules and classes to handle Git tasks, with supporting unit tests:
 
-  - git.status: detects Git tracking status, sync state, and conflicts.
+  - `git.status`: detects Git tracking status, sync state, and conflicts.
 
-  - git.io: handles reading and writing historical .bib versions.
+  - `git.io`: handles reading and writing historical `.bib` versions.
 
-  - git.conflicts: defines conflict detection and resolution strategies.
+  - `git.conflicts`: defines conflict detection and resolution strategies.
 
-  - git.merge: generates and applies semantic merge plans.
+  - `git.merge`: generates and applies semantic merge plans.
 
-- Followed test-driven development using GitSyncServiceTest, simulating multi-user scenarios to verify semantic merge behavior.
+- Followed test-driven development using `GitSyncServiceTest`, simulating multi-user scenarios to verify semantic merge behavior.
 
-#### [#13666](<[https://github.com/JabRef/jabref/pull/13666](https://github.com/JabRef/jabref/pull/13666)>) - Decouple GitHandler creation and extend semantic conflict detection
+#### [#13666](https://github.com/JabRef/jabref/pull/13666) - Decouple `GitHandler` creation and extend semantic conflict detection
 
 **Highlights:**
 
-- Introduced GitHandlerRegistry to ensure a single GitHandler instance per repository path, avoiding inconsistent state or duplicated work.
+- Introduced `GitHandlerRegistry` to ensure a single `GitHandler` instance per repository path, avoiding inconsistent state or duplicated work.
 
 - Improved semantic conflict detection:
   - Handled more edge cases in entry-level merging.
   - Extended test coverage:
-    - SemanticConflictDetectorTest now covers both entry-level and field-level - semantic conflict scenarios.
-    - Added a detailed classification table in the developer documentation, defining conflict types and expected resolution rules for 3-way semantic merges.
+    - `SemanticConflictDetectorTest` now covers both entry-level and field-level - semantic conflict scenarios.
+    - Added a detailed classification table in the developer documentation, defining conflict types and expected resolution rules for three-way semantic merges.
 
 #### [#13677](<[https://github.com/JabRef/jabref/pull/13677](https://github.com/JabRef/jabref/pull/13677)>) - Implement “Share this library to GitHub” feature
 
 **Highlights:**
 
-- Added a GUI dialog for sharing .bib libraries to GitHub:
+- Added a GUI dialog for sharing `.bib` libraries to GitHub:
 
   - Users provide the GitHub HTTPS URL, username, and PAT to connect and push.
 
@@ -84,7 +84,7 @@ Instead of using Git’s default line-based diff and merge, this project impleme
 
 - Automatically initializes and pushes the local repository if not already set up.
 
-- Introduced GitPreferences to securely store GitHub credentials.
+- Introduced `GitPreferences` to securely store GitHub credentials.
 
 #### [#13743](https://github.com/JabRef/jabref/pull/13743) - Add Git Commit support
 
@@ -98,16 +98,16 @@ Instead of using Git’s default line-based diff and merge, this project impleme
 
 - Git Pull:
   - Detects new commits from upstream (via fetch + status).
-  - Uses semantic merging for .bib files to compare and merge fields.
+  - Uses semantic merging for `.bib` files to compare and merge fields.
     - If no conflicts: automatically merges and commits.
-    - If conflicts are detected: opens a 3-way merge dialog.
+    - If conflicts are detected: opens a three-way merge dialog.
 - Git Push:
   - Pushes the current branch to the remote repository.
   - Prevents pushing if there are unresolved conflicts or uncommitted changes.
 
 ### Outside core scope
 
-#### [#13775](<[https://github.com/JabRef/jabref/pull/13775](https://github.com/JabRef/jabref/pull/13775)>) - Restore local-only Git behavior for SLR to fix repository initialization error
+#### [#13775](https://github.com/JabRef/jabref/pull/13775) - Restore local-only Git behavior for SLR to fix repository initialization error
 
 fixes a regression where the `GitHandler.pullOnCurrentBranch()` method was modified to support remote repositories.
 
@@ -145,11 +145,11 @@ While the current implementation of Git integration in JabRef covers the core lo
 
 **Feature enhancements**
 
-- Automatically detect whether the currently opened .bib file is under Git version control and display its status in the GUI (e.g., ahead/behind, conflict state). If an error occurs, users should be notified and the file should be safely reverted.
+- Automatically detect whether the currently opened `.bib` file is under Git version control and display its status in the GUI (e.g., ahead/behind, conflict state). If an error occurs, users should be notified and the file should be safely reverted.
 
-- Implement a CLI-based conflict resolver (CliGitConflictResolverStrategy) to support Git merging in command-line environments such as JabKit.
+- Implement a CLI-based conflict resolver (`CliGitConflictResolverStrategy`) to support Git merging in command-line environments such as JabKit.
 
-- Allow Git settings to be configured on a per-library preferences instead of globally, so different .bib files can use different repositories and remotes.
+- Allow Git settings to be configured on a per-library preferences instead of globally, so different `.bib` files can use different repositories and remotes.
 
 Other feature requests and bug reports are tracked at: [https://github.com/wanling0000/jabref/issues](https://github.com/wanling0000/jabref/issues)
 
@@ -159,17 +159,17 @@ Other feature requests and bug reports are tracked at: [https://github.com/wanl
 
 - Clearly define when the “Git Share” feature should be enabled (e.g., whether the repository is initialized, remote is set).
 
-- Remove the use of environment variables (e.g., GIT_EMAIL, GIT_PW) for credentials in SLR-related code; unify credential handling through GitPasswordPreferences.
+- Remove the use of environment variables (e.g., `GIT_EMAIL`, `GIT_PW`) for credentials in SLR-related code; unify credential handling through `GitPreferences`.
 
-\*_Architectural improvements_
+**Architectural improvements**
 
-- GitSyncService currently mixes responsibilities including status checking, merge planning, and execution:
+- `GitSyncService` currently mixes responsibilities including status checking, merge planning, and execution:
 
 - It could be refactored into separate components such as Planner / Executor / Orchestrator.
 
 - Configurable options should be introduced (e.g., whether to auto-amend, how to generate default commit messages) instead of hardcoded behavior.
 
-- Reduce tight coupling between GitHandler and the Systematic Literature Research (SLR) component, and clearly define interaction boundaries.
+- Reduce tight coupling between `GitHandler` and the Systematic Literature Research (SLR) component, and clearly define interaction boundaries.
 
 These future improvements will further enhance JabRef’s Git-based collaboration capabilities and improve the maintainability and extensibility of the system.
 
@@ -189,4 +189,4 @@ Throughout this GSoC project, I worked on integrating Git functionality into Jab
 
 - Most importantly, I experienced real open-source collaboration: submitting pull requests, receiving and responding to reviews, and communicating with mentors and maintainers. Being part of open-source community also allowed me to connect with people I would never have crossed paths with in real life, which I found surprising.
 
-I sincerely thank my GSoC mentors [@koppor](), [@subhramit](https://github.com/subhramit), [@InAnYan](https://github.com/InAnYan) [@calixtus](https://github.com/calixtus),[@Siedlerchr](https://github.com/Siedlerchr) for their patience, support, and guidance throughout the project. They not only helped me overcome technical challenges but also taught me valuable lessons in project management, code quality, and open-source contribution.
+I sincerely thank my GSoC mentors [@koppor](https://github.com/koppor), [@subhramit](https://github.com/subhramit), [@InAnYan](https://github.com/InAnYan), [@calixtus](https://github.com/calixtus), [@Siedlerchr](https://github.com/Siedlerchr) for their patience, support, and guidance throughout the project. They not only helped me overcome technical challenges but also taught me valuable lessons in project management, code quality, and open-source contribution.
