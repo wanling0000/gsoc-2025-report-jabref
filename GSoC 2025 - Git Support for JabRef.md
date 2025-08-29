@@ -70,7 +70,7 @@ Instead of using Git’s default line-based diff and merge, this project impleme
     - `SemanticConflictDetectorTest` now covers both entry-level and field-level - semantic conflict scenarios.
     - Added a detailed classification table in the developer documentation, defining conflict types and expected resolution rules for three-way semantic merges.
 
-#### [#13677](<[https://github.com/JabRef/jabref/pull/13677](https://github.com/JabRef/jabref/pull/13677)>) - Implement “Share this library to GitHub” feature
+#### [#13677](https://github.com/JabRef/jabref/pull/13677) - Implement “Share this library to GitHub” feature
 
 **Highlights:**
 
